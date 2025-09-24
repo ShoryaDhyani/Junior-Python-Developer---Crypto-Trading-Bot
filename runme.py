@@ -18,9 +18,10 @@ Pick a command by typing its number or name:
 2. limit    - Place a limit order
 3. grid     - Place a grid/OCO emulated order
 4. stopl    - Place a stop limit order
-5. balance  - Check asset balance
-6. help     - Show this menu
-7. quit     - Exit the CLI
+5. price    - Check price of coin
+6. balance  - Check asset balance
+7. help     - Show this menu
+8. quit     - Exit the CLI
 ==============================
 """
 
@@ -79,17 +80,23 @@ def handle_command(client:AdvanceBot, cmdline: str):
                 if None in (qty,stop_price,side): return
                 res = client.stop_limit_order(symbol=symbol, side=side.upper(),quantity=qty, stop_price=stop_price,price=price)
                 print("Initiated tranaction check logs for details")
-            case "5" | "balance":
+            case "5" | "price":
+                if len(args) != 1:
+                    return print("Usage: price <ASSET>")
+                bal = client.printprice(args[0])
+                if bal is not None:
+                    print(f"Balance {args[0].upper()}: {bal}")
+            case "6" | "balance":
                 if len(args) != 1:
                     return print("Usage: balance <ASSET>")
                 bal = client.get_balance(args[0])
                 if bal is not None:
                     print(f"Balance {args[0].upper()}: {bal}")
 
-            case "6" | "help":
+            case "7" | "help":
                 print(COMMANDS_MENU)
 
-            case "7" | "quit" | "exit":
+            case "8" | "quit" | "exit":
                 print("Exiting CLI.")
                 sys.exit(0)
 

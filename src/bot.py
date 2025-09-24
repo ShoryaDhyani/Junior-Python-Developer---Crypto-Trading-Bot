@@ -22,8 +22,8 @@ class Bot:
         return True
 
 
-    def printprice(self,symbol="BTCUSDT"):
-        ticker=self.client.get_symbol_ticker(symbol=symbol)
+    def printprice(self,symbol:str):
+        ticker=self.client.get_symbol_ticker(symbol=symbol.upper())
         return float(ticker['price'])
 
     def get_balance(self,asset:str=None):
