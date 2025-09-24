@@ -1,0 +1,6 @@
+*__pycache__
+/.venv
+/junk
+*.env
+*.log
+test.py
