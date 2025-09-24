@@ -10,7 +10,6 @@ class Bot:
             self.client=Client(api_key=api_key,api_secret=api_secret,testnet=testnet,tld='com')
             if testnet: self.client.FUTURES_URL='https://testnet.binancefuture.com/fapi'
             self.client.TIME_OFFSET = self.client.get_server_time()['serverTime'] - int(time.time() * 1000)
-            print(self.client.futures_ping())
         except Exception as e:
             log_error(e)
             print("Error Occured")
