@@ -85,7 +85,7 @@ def handle_command(client:AdvanceBot, cmdline: str):
                     return print("Usage: price <ASSET>")
                 bal = client.printprice(args[0])
                 if bal is not None:
-                    print(f"Balance {args[0].upper()}: {bal}")
+                    print(f"Price of {args[0].upper()}: {bal}")
             case "6" | "balance":
                 if len(args) != 1:
                     return print("Usage: balance <ASSET>")
