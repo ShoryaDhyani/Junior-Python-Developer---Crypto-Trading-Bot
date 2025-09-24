@@ -5,6 +5,7 @@ import asyncio
 class AdvanceBot(Bot):
 
     def stop_limit_order(self,symbol:str,quantity:float,side:str,price:str,stop_price:str):
+        symbol=symbol.upper()
         log_info(f"Initiating Stop Limit Order to {side} {quantity} {symbol} at stop price {stop_price}")
         try:
             ord=self.client.futures_create_order(
@@ -21,6 +22,7 @@ class AdvanceBot(Bot):
             log_error(e)
     
     async def twap_order(self,symbol:str, side:str, quantity, slices, interval):
+        symbol=symbol.upper()
         log_info(f"Initiating TWAP Order to {side} {slices} slices for {quantity} {symbol} at interval of {interval}sec ")
         try:
             slice_qty = quantity / slices
@@ -38,6 +40,7 @@ class AdvanceBot(Bot):
     
 
     def grid_orders(self,symbol, base_price, grid_size, step, quantity):
+        symbol=symbol.upper()
         log_info(f"Initiating Grid Order for {quantity} {symbol} of gride size {grid_size}")
         orders = []
         try:

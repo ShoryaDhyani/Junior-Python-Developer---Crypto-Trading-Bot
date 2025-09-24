@@ -39,6 +39,7 @@ class Bot:
         
     
     def create_market_order(self,quantity:float,symbol:str,side:str):
+        symbol=symbol.upper()
         log_info(f"Initiating Market Order to {side} {quantity} {symbol}")
         try:
             ord=self.client.futures_create_order(quantity=quantity,
@@ -53,6 +54,7 @@ class Bot:
 
 
     def create_limit_order(self,quantity:float,symbol:str,price:float,side:str,inforce:str="GTC"):
+        symbol=symbol.upper()
         log_info(f"Initiating Limit Order to {side} {quantity} {symbol}")
         try:
             ord=self.client.futures_create_order(symbol=symbol,
